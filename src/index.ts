@@ -1,6 +1,50 @@
 import { selectFunction } from "./conditional";
 import { withTime, withTimeAsync } from "./ho-functions";
+import { Request } from "./lookup";
+import { registerObjectListener } from "./mapped";
 import { CreateUser, Role, UpdateUser, User, UserWithAddress } from "./utility";
+
+/**
+ * Mapped
+ */
+
+let myObj = {
+  id: 1,
+  name: "X",
+  salary: 4000,
+};
+registerObjectListener(myObj, {
+  onIdChange: (id: number) => {
+    console.log("ID changed to", id);
+  },
+  onNameChange: (name: string) => {
+    console.log("Name Changed to", name);
+  },
+  onSalaryChange: (newSalary: number) => {
+    console.log("Salary Changed to", newSalary);
+  },
+});
+myObj.name = "AAA";
+myObj.id = 123455;
+myObj.salary = 11111111;
+console.log(myObj);
+/**
+ * Lookup
+ */
+type OrderRequest = Request["order"];
+type Item = Request["order"]["items"][0];
+const getOrder = function (): OrderRequest {
+  return {
+    items: [],
+    orderId: 123,
+  };
+};
+const item: Item = {
+  coupon: "XXXXXX",
+  itemId: 12,
+  price: 2000,
+  quantity: 3,
+};
 
 /**
  * COnditional Type Definition
