@@ -1,8 +1,35 @@
 import { selectFunction } from "./conditional";
+import {
+  AdminUser,
+  processUser,
+  StandardUser,
+  User as Uzer,
+} from "./exclusion-narrowing";
 import { withTime, withTimeAsync } from "./ho-functions";
 import { Request } from "./lookup";
 import { registerObjectListener } from "./mapped";
 import { CreateUser, Role, UpdateUser, User, UserWithAddress } from "./utility";
+
+/**
+ * Exclusion and Narrowing
+ */
+
+processUser({ type: "ADMIN", adminEmail: "admin@admin.com", isAdmin: true });
+processUser({ type: "USER", userEmail: "admin@admin.com", isUser: true });
+
+const users: Uzer[] = [];
+
+//infer to User[]
+const standardUsers1 = users.filter((user): boolean => {
+  return "isUser" in user;
+});
+
+//infer to StandardUser[]
+const standardUsers2 = users.filter((user): user is StandardUser => {
+  return "isUser" in user;
+});
+
+const adminUsers = users.filter((user): user is AdminUser => "isAdmin" in user);
 
 /**
  * Mapped

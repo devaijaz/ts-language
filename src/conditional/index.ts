@@ -13,3 +13,8 @@ export type SelectOption<T> = T extends string | number
 export function selectFunction<T>(data: SelectOption<T>): SelectOption<T> {
   return data;
 }
+
+
+//usage
+selectFunction({options:[1,2,3,4]});
+selectFunction({options: [{id:1, title: "Hello"}], valueKey: "title", labelKey: "id"})

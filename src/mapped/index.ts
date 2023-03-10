@@ -24,4 +24,6 @@ const capitalize = (str: string) => {
 export const registerObjectListener = function <T>(
   obj: T,
   listeners: Listener<T>
-) {};
+) {
+  
+};
