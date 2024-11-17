@@ -27,3 +27,10 @@ export const registerObjectListener = function <T>(
 ) {
   
 };
+
+
+registerObjectListener({input:""}, {
+  onInputChange: (_value: string)=> {
+    
+  }
+})
