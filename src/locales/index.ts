@@ -20,10 +20,10 @@ type LocaleMap = typeof localeData;
 type LocaleName = keyof LocaleMap;
 type Locale = LocaleMap[LocaleName];
 
-type Nested = Record<string, unknown>;
 
 const currentLocale: LocaleName = "en_us";
 
+type Nested = Record<string, unknown>;
 
 type Path<T extends Nested> = keyof { [K in keyof T as (T[K] extends string | number
   ? K
@@ -31,6 +31,9 @@ type Path<T extends Nested> = keyof { [K in keyof T as (T[K] extends string | nu
     : never))]
   : any
 };
+
+type Test  =  Path<LocaleMap>;
+
 
 function resolve(obj: Nested, keys: string[], index: number = 0): string {
   const key = keys[index];
